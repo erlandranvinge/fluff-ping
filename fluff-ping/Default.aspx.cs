@@ -38,7 +38,7 @@ namespace fluff_ping
                 log.Append(
                     "{ \"url\": \"" + result.Url + 
                     "\", \"status\": \"" + result.Status + 
-                    "\", \"time\": \"" + result.Time + "\"}");
+                    "\", \"time\": " + result.Time + " }");
 			}
 			if (keys.Length > 0)
 			ReturnJSON("{ \"results\": [" + log.ToString() + "] }");
