@@ -16,12 +16,19 @@ namespace fluff_ping
 		protected void Page_Load(object sender, EventArgs e)
 		{
 			var keys = HttpContext.Current.Request.QueryString.Keys.Cast<string>().Where(
-				x => x.StartsWith(UrlBase, StringComparison.InvariantCultureIgnoreCase)).ToArray();
+				x => (!string.IsNullOrEmpty(x) && 
+					x.StartsWith(UrlBase, StringComparison.InvariantCultureIgnoreCase))).ToArray();
 
 			StringBuilder log = new StringBuilder(2048);
 			foreach (var key in keys)
 			{
 				var url = HttpContext.Current.Request.QueryString[key];
+				if (string.IsNullOrEmpty(url))
+					continue;
+
+				if (url.StartsWith("www"))
+					url = "http://" + url;
+
 				var status = SendRequest(url);
 				log.Append("{ \"url\": \"" + url + "\", \"status\": \"" + status + "\"}");
 				//log.AppendFormat("{\"url\":\"{0}\", \"status\":\"{1}\"}", );

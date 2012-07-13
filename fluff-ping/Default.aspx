@@ -5,7 +5,8 @@
     <body>
         <h2>Fluff-ping, pinging from the cloud.</h2>
         <pre>
-            Usage: fluff-ping-url?url1=www.google.se&urln=...        
+            Usage: <a href="http://fluff-ping.apphb.com/?url1=www.google.se&url2=www.yahoo.com">http://fluff-ping.apphb.com/?url1=www.google.se&url2=www.yahoo.com</a>
         </pre>
+        
     </body>
 </html>

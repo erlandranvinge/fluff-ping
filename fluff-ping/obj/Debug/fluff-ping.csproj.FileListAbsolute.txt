@@ -3,3 +3,8 @@ c:\users\erland.ranvinge\documents\visual studio 2010\Projects\fluff-ping\fluff-
 c:\users\erland.ranvinge\documents\visual studio 2010\Projects\fluff-ping\fluff-ping\obj\Debug\ResolveAssemblyReference.cache
 c:\users\erland.ranvinge\documents\visual studio 2010\Projects\fluff-ping\fluff-ping\obj\Debug\fluff-ping.dll
 c:\users\erland.ranvinge\documents\visual studio 2010\Projects\fluff-ping\fluff-ping\obj\Debug\fluff-ping.pdb
+C:\Git\fluff-ping\fluff-ping\bin\fluff-ping.dll
+C:\Git\fluff-ping\fluff-ping\bin\fluff-ping.pdb
+C:\Git\fluff-ping\fluff-ping\obj\Debug\ResolveAssemblyReference.cache
+C:\Git\fluff-ping\fluff-ping\obj\Debug\fluff-ping.dll
+C:\Git\fluff-ping\fluff-ping\obj\Debug\fluff-ping.pdb
