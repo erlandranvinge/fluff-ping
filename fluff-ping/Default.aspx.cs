@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -29,25 +30,47 @@ namespace fluff_ping
 				if (url.StartsWith("www"))
 					url = "http://" + url;
 
-				var status = SendRequest(url);
-				log.Append("{ \"url\": \"" + url + "\", \"status\": \"" + status + "\"}");
-				//log.AppendFormat("{\"url\":\"{0}\", \"status\":\"{1}\"}", );
+				var result = SendRequest(url);
+
+                if (log.Length > 0)
+                    log.Append(", ");
+
+                log.Append(
+                    "{ \"url\": \"" + result.Url + 
+                    "\", \"status\": \"" + result.Status + 
+                    "\", \"time\": \"" + result.Time + "\"}");
 			}
 			if (keys.Length > 0)
-			ReturnJSON("{[" + log.ToString() + "]}");
+			ReturnJSON("{ \"results\": [" + log.ToString() + "] }");
 		}
 
-		private HttpStatusCode SendRequest(string url)
+        private PingResult SendRequest(string url)
 		{
 			try
 			{
 				var request = WebRequest.Create(url);
+
+			    var watch = new Stopwatch();
+                watch.Start();
 				var response = (HttpWebResponse)request.GetResponse();
-				return response.StatusCode;
+			    watch.Stop();
+			    return new PingResult
+			    {
+			        Url = url, 
+                    Status = response.StatusCode, 
+                    Description =  response.StatusDescription,
+                    Time = watch.ElapsedMilliseconds
+			    };
 			}
 			catch (Exception e)
 			{
-				return HttpStatusCode.NotFound;
+                return new PingResult
+                {
+                    Url = url,
+                    Status = HttpStatusCode.NotFound,
+                    Description = e.Message,
+                    Time = -1
+                };
 			}
 		}
 
